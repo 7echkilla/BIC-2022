@@ -26,11 +26,14 @@ UltrasonicSensor ultrasonic_sensor(TRIG_PIN, ECHO_PIN);
 
 
 void setup() {
-    pinMode(X_PIN, INPUT);
-    pinMode(Y_PIN, INPUT);
+    pinMode(HORZ_PIN, INPUT);
+    pinMode(VERT_PIN, INPUT);
 
     pinMode(IR_L_PIN, INPUT);
     pinMode(IR_R_PIN, INPUT);
+
+    pinMode(ECHO_PIN, INPUT);
+    pinMode(TRIG_PIN, OUTPUT);
     
     Serial.begin(BAUD_RATE);
 }
@@ -45,7 +48,7 @@ void loop() {
     // Serial.println(y_value);
 
     // Serial.println(ir_sensor_left.is_black());
-    Serial.println(ultrasonic_sensor.)
+    Serial.println(ultrasonic_sensor.get_distance())
 
     delay(100);
 }
