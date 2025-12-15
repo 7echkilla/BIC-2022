@@ -39,3 +39,20 @@ AutoRC/\
 │ └── wiring_diagrams/ # Circuit schematics and wiring diagrams\
 │\
 └── README.md\
+
+## Drive Controls
+For single joystick, where x/y = [-1, 1]:
+```cpp
+// tank-like control (in-place spin)
+float left = y + x;
+float right = y - x; 
+
+// car-like control
+float left = y + x * abs(y);
+float right = y - x * abs(y);
+
+// car+tank mode
+float spin_weight = 0.0 // 0 = car, 1 = tank
+float left = y + x * (spin_weight + (1 - spin_weight) * abs(y));
+float right = y - x * (spin_weight + (1 - spin_weight) * abs(y));
+```

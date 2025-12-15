@@ -10,6 +10,7 @@
 #define VERT_PIN A1
 #define JOYSTICK_MIN 0
 #define JOYSTICK_MAX 1023
+#define DEADZONE 0.05
 
 // IR sensor config
 #define IR_R_PIN A2
@@ -55,9 +56,17 @@ void loop() {
     float x_value = analog_joystick.get_x_value();
     float y_value = analog_joystick.get_y_value();
 
-    float left_value = constrain(y_value + x_value, -1.0, 1.0);
-    float right_value = constrain(y_value - x_value, -1.0, 1.0);
+    int angle = map(x_value, -1, 1, 0, 180);
+    servo.write(angle);
 
-    motor_left.drive_motor(left_value);
-    motor_right.drive_motor(right_value);
+    if (abs(y_value) < DEADZONE) {
+        motor_left.drive_motor(x_value);
+        motor_right.drive_motor(-x_value);
+    } else {
+        float left_value = constrain(y_value + x_value * abs(y_value), -1.0, 1.0);
+        float right_value = constrain(y_value - x_value * abs(y_value), -1.0, 1.0);
+
+        motor_left.drive_motor(left_value);
+        motor_right.drive_motor(right_value);
+    }
 }
