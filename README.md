@@ -38,7 +38,7 @@ AutoRC/\
 ├── docs/\
 │ └── wiring_diagrams/ # Circuit schematics and wiring diagrams\
 │\
-└── README.md\
+└── README.md
 
 ## Drive Controls
 For single joystick, where x/y = [-1, 1]:

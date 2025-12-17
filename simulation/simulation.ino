@@ -30,6 +30,7 @@
 #define MIN_SPEED 30.0
 #define MAX_SPEED 255.0
 
+// Servo config
 #define SERVO_PIN 3
 #define SERVO_MIN 0
 #define SERVO_MAX 180
@@ -81,7 +82,8 @@ void loop() {
         motor_right.drive_motor(-x_value);
     } else {
         // Car-like behaviour (forward/backward + steering)
-        int angle = constrain(round((x_value + 1) * (SERVO_MAX / 2)), SERVO_MIN, SERVO_MAX);
+        angle = constrain(round((x_value + 1) * (SERVO_MAX / 2)), SERVO_MIN, SERVO_MAX);
+        servo.write(angle);
 
         // Calculated left/right motor values based on car-behaviour
         float left_value = constrain(y_value + x_value * fabs(y_value), -1.0, 1.0);

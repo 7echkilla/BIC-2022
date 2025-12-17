@@ -9,7 +9,6 @@ class DCMotor {
     private:
         const int _forward_pin, _backward_pin, _power_pin;
         const float _max_speed, _min_speed;
-        const char* _name;
         void _forward_motion(int speed);
         void _backward_motion(int speed);
         void _stop_motion();
