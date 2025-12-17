@@ -45,18 +45,12 @@ DCMotor motor_left(MOTOR_LF_PIN, MOTOR_LB_PIN, MOTOR_EN_PIN, MIN_SPEED, MAX_SPEE
 DCMotor motor_right(MOTOR_RF_PIN, MOTOR_RB_PIN, MOTOR_EN_PIN, MIN_SPEED, MAX_SPEED);
 Servo servo;
 
-void setup() {
-    pinMode(HORZ_PIN, INPUT);
-    pinMode(VERT_PIN, INPUT);
+int control_mode = 0;
+int last_sel_value = HIGH;
 
+void setup() {
     pinMode(ECHO_PIN, INPUT);
     pinMode(TRIG_PIN, OUTPUT);
-
-    pinMode(MOTOR_LF_PIN, OUTPUT);
-    pinMode(MOTOR_LB_PIN, OUTPUT);
-    pinMode(MOTOR_RF_PIN, OUTPUT);
-    pinMode(MOTOR_RB_PIN, OUTPUT);
-    pinMode(MOTOR_EN_PIN, OUTPUT);
     
     servo.attach(SERVO_PIN);
     Serial.begin(BAUD_RATE);
@@ -100,7 +94,20 @@ void manual_control() {
 }
 
 void loop() {
-    int mode = 0;
     int sel_value = analog_joystick.get_sel_value();
-    Serial.println(sel_value);
+    
+    if (sel_value == LOW && last_sel_value == HIGH) {
+        // Toggle mode on button press (joystick select)
+        control_mode = !control_mode;
+        if (control_mode == LOW) {
+            Serial.println("Automatic mode");
+        } else if (control_mode == HIGH) {
+            Serial.println("Manual mode");
+        } else {
+            Serial.println("Undefined mode");
+        }
+    }
+
+    last_sel_value = sel_value;
+    delay(100);    
 }

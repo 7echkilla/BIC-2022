@@ -1,8 +1,11 @@
 #include "dc_motor.h"
 #include <Arduino.h>
 
-DCMotor::DCMotor(int forward_pin, int backward_pin, int power_pin,float min_speed, float max_speed)
-    : _forward_pin(forward_pin), _backward_pin(backward_pin), _power_pin(power_pin), _min_speed(min_speed), _max_speed(max_speed) {
+DCMotor::DCMotor(int forward_pin, int backward_pin, int power_pin,float min_speed, float max_speed) 
+: _forward_pin(forward_pin), _backward_pin(backward_pin), _power_pin(power_pin), _min_speed(min_speed), _max_speed(max_speed) {
+    pinMode(_forward_pin, OUTPUT);
+    pinMode(_backward_pin, OUTPUT);
+    pinMode(_power_pin, OUTPUT);
 }
 
 void DCMotor:: drive_motor(float value) {
