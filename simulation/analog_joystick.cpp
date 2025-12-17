@@ -7,8 +7,8 @@ AnalogJoystick::AnalogJoystick(int x_pin, int y_pin, int sel_pin, int max_input)
     pinMode(_y_pin, INPUT);
     pinMode(_sel_pin, INPUT);
     _last_debounce_time = 0;
-    _debounce_delay = 50;
-    _last_sel_value = 1;
+    _debounce_delay = 50;   // Delay to register debounce in ms
+    _last_sel_value = HIGH; // Default state for select pin (unpressed)
 }
 
 // Convert 0/1023 analog input to -1/1
@@ -37,6 +37,7 @@ int AnalogJoystick::get_sel_value() {
         }
     }
 
+    // Always update last registered value
     _last_sel_value = current_sel_value;
     return _sel_value;
 }

@@ -9,14 +9,14 @@
 #define HORZ_PIN A0
 #define VERT_PIN A1
 #define SEL_PIN 2
-#define JOYSTICK_MIN 0
-#define JOYSTICK_MAX 1023
-#define DEADZONE 0.12
+#define JOYSTICK_MIN 0      // Default min analog value
+#define JOYSTICK_MAX 1023   // Default max analog value
+#define DEADZONE 0.12       // Anticipated joystick deadzone [0.0-1.0]
 
 // IR sensor config
 #define IR_R_PIN A2
 #define IR_L_PIN A3 
-#define IR_THRESHOLD 400
+#define IR_THRESHOLD 400    // Positive detection below this value
 
 // Ultrasonic sensor config
 #define ECHO_PIN 4
@@ -28,13 +28,13 @@
 #define MOTOR_RF_PIN 10
 #define MOTOR_RB_PIN 9
 #define MOTOR_EN_PIN 11
-#define MIN_SPEED 30.0
-#define MAX_SPEED 250.0
+#define MIN_SPEED 30.0      // Min PWM signal to register motion 
+#define MAX_SPEED 250.0     // Max allowable PWM signal
 
 // Servo config
 #define SERVO_PIN 3
-#define SERVO_MIN 0
-#define SERVO_MAX 180
+#define SERVO_MIN 0         // Default min servo range
+#define SERVO_MAX 180       // Default max servo range
 
 #define BAUD_RATE 9600
 
@@ -49,9 +49,6 @@ int control_mode = 0;
 int last_sel_value = HIGH;
 
 void setup() {
-    pinMode(ECHO_PIN, INPUT);
-    pinMode(TRIG_PIN, OUTPUT);
-    
     servo.attach(SERVO_PIN);
     Serial.begin(BAUD_RATE);
 }
@@ -97,12 +94,12 @@ void loop() {
     int sel_value = analog_joystick.get_sel_value();
     
     if (sel_value == LOW && last_sel_value == HIGH) {
-        // Toggle mode on button press (joystick select)
+        // Toggle mode on falling edge joystick selector
         control_mode = !control_mode;
         if (control_mode == LOW) {
-            Serial.println("Automatic mode");
+            Serial.println("[INFO] Automatic mode");
         } else if (control_mode == HIGH) {
-            Serial.println("Manual mode");
+            Serial.println("[INFO] Manual mode");
         } else {
             Serial.println("Undefined mode");
         }
