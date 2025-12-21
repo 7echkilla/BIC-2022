@@ -40,6 +40,22 @@ AutoRC/\
 │\
 └── README.md
 
+The files in this directory are organized as follows:
+
+analog_joystick.cpp: This file contains the implementation for handling the analog joystick input. It simulates reading the joystick’s X and Y axis values and processes them into control signals for the RC car’s movement in manual mode.
+
+analog_joystick.h: The header file for the analog_joystick.cpp implementation. It defines the functions and data structures necessary for handling joystick input.
+
+dc_motor.cpp: This file contains the code to simulate the behavior of the DC motors used in the RC car. It includes functions to control the motor's speed and direction.
+
+dc_motor.h: The header file for the dc_motor.cpp implementation. It defines the functions and constants related to motor control.
+
+infrared_proximity.cpp: This file simulates the infrared proximity sensor used for obstacle detection. The sensor will be used in automated mode to detect objects in the car's path or to follow lines on the ground.
+
+infrared_proximity.h: The header file for the infrared_proximity.cpp implementation. It defines the proximity sensor's interface for reading inputs like distance to obstacles or line-following status.
+
+simulation.ino: The main entry point for the simulation in Circkit Designer. This file includes setup and loop functions, with code specific to how the simulation should behave, such as simulating input from the joystick or infrared sensors. This file differs from the main project's Arduino sketch and is tailored to work within the Circkit Designer IDE environment.
+
 ## Drive Controls
 For single joystick, where x/y = [-1, 1]:
 ```cpp
