@@ -10,9 +10,9 @@ int InfraredProximitySensor::_get_ir_value() {
     return analogRead(_ir_pin);
 }
 
-bool InfraredProximitySensor::is_black() {
+bool InfraredProximitySensor::is_white() {
     int ir_value = _get_ir_value();
-    bool is_black = ir_value < _threshold;
+    bool is_white = ir_value > _threshold;
     
-    return is_black;
+    return is_white;
 }

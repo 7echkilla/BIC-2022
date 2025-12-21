@@ -4,7 +4,7 @@
 class InfraredProximitySensor {
     public:
         InfraredProximitySensor(int ir_pin, int threshold);
-        bool is_black();
+        bool is_white();
 
     private:
         const int _ir_pin, _threshold;
