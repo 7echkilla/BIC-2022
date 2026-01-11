@@ -8,12 +8,12 @@ The Master Arduino controls the overall mode (manual or automatic) and sends joy
 ## Project Strucure
 /lane-cruiser\
 │\
-├── /[master](./master/) # Controller code (master arduino)\
+├── /master # Controller code (master arduino)\
 │ ├── [analog_joystick.h](./master/analog_joystick.h) # Header file for joystick class\
 │ ├── [analog_joystick.cpp](./master/analog_joystick.cpp) # Source code for joystick logic\
 │ └── [master.ino](./master/master.ino) # Main code for the master arduino\
 │\
-├── /[simulation](./simulation/)\
+├── /simulation\
 │ ├── [analog_joystick.h](./master/analog_joystick.h) # Header file for joystick class\
 │ ├── [analog_joystick.cpp](./master/analog_joystick.cpp) # Source code for joystick logic\
 │ ├── [dc_motor.h](./simulation/dc_motor.h) # Header file for motor class\
@@ -25,7 +25,7 @@ The Master Arduino controls the overall mode (manual or automatic) and sends joy
 │ ├── [ultrasonic_sensor.h](./simulation/ultrasonic_sensor.h) # Header file for proximity sensor class\
 │ └── [ultrasonic_sensor.cpp](./simulation/ultrasonic_sensor.cpp) # Source code for proximity sensor class\
 │\
-├── /[slave](./slave/) # RC car code (slave arduino)\
+├── /slave # RC car code (slave arduino)\
 │ ├── [dc_motor.h](./slave/dc_motor.h) # Header file for motor class\
 │ ├── [dc_motor.cpp](./slave/dc_motor.cpp) # Source file for motor logic\
 │ ├── [infrared_proximity_sensor.h](./slave/infrared_proximity_sensor.h) # Header file for ir sensor class\
@@ -62,7 +62,7 @@ See [article](https://howtomechatronics.com/tutorials/arduino/how-to-configure-p
 
 ### Software Requirements
 - [Arduino IDE](https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE) (or similar) to compile and upload code to the boards
-- [CirkitDesigner](https://app.cirkitdesigner.com/) (optional) to simulate car behaviour as in [/simulation](./simulation/)
+- [CirkitDesigner](https://app.cirkitdesigner.com/) (optional) to simulate car behaviour as in /[simulation](./simulation/)
 
 ## Drive Controls
 The project employs a combination of car and tank-like drive using a single joystick with x/y = [-1, 1]:
